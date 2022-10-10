@@ -1,20 +1,76 @@
 /** @odoo-module **/
 
 import { registry } from "@web/core/registry";
+import { Layout } from "@web/search/layout";
+import { getDefaultConfig } from "@web/views/view";
+import { useService } from "@web/core/utils/hooks";
+import { Domain } from "@web/core/domain";
+
 import { Counter } from "./components/counter/counter";
 import { TodoList } from "./components/todolist/todolist";
 import { Card } from "./components/card/card";
 
-const { Component, useState } = owl;
+const { Component, useSubEnv, onWillStart } = owl;
 
 class AwesomeDashboard extends Component {
     setup() {
-        this.todos = [
-            { id: 3, description: "buy milk", done: false },
-            { id: 4, description: "buy eggs", done: true },
-            { id: 5, description: "buy avocado", done: true },
-        ];
-        console.log("Awesome Dashboard is loaded!!!");
+        useSubEnv({
+            config: {
+                ...getDefaultConfig(),
+                ...this.env.config,
+            },
+        });
+        this.display = {
+            controlPanel: { "top-right": false, "bottom-right": false },
+        };
+        this.action = useService("action");
+        this.rpc = useService("rpc");
+
+        this.keyToString = {
+            average_quantity: "Average amount of t-shirt by order this month",
+            average_time: "Average time for an order to go from 'new' to 'sent' or 'cancelled'",
+            nb_cancelled_orders: "Number of cancelled orders this month",
+            nb_new_orders: "Number of new orders this month",
+            total_amount: "Total amount of new orders this month",
+        };
+        onWillStart(async () => {
+            this.statistics = await this.rpc("/awesome_tshirt/statistics");
+        });
+        onWillStart(() => {
+            this.rpc('/awesome_tshirt/statistics')
+            .then(data => {
+                this.statistics = data;
+            })
+            .catch(error => console.log(error.message));
+        });
+    }
+
+    openCustomerView() {
+        this.action.doAction("base.action_partner_form");
+    }
+
+    openOrders(title, domain) {
+        this.action.doAction({
+            type: "ir.actions.act_window",
+            name: title,
+            res_model: "awesome_tshirt.order",
+            domain: new Domain(domain).toList(),
+            views: [
+                [false, "list"],
+                [false, "form"],
+            ],
+        });
+    }
+    openLast7DaysOrders() {
+        const domain =
+            "[('create_date','>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]";
+        this.openOrders("Last 7 days orders", domain);
+    }
+
+    openLast7DaysCancelledOrders() {
+        const domain =
+            "[('create_date','>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d')), ('state','=', 'cancelled')]";
+        this.openOrders("Last 7 days cancelled orders", domain);
     }
 }
 Object.assign(AwesomeDashboard, {
@@ -22,7 +78,8 @@ Object.assign(AwesomeDashboard, {
     components: {
         Counter,
         TodoList,
-        Card
+        Card,
+        Layout
     }
 });
 
