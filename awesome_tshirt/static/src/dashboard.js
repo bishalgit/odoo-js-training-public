@@ -24,7 +24,7 @@ class AwesomeDashboard extends Component {
             controlPanel: { "top-right": false, "bottom-right": false },
         };
         this.action = useService("action");
-        this.rpc = useService("rpc");
+        this.tshirtService = useService("tshirtService");
 
         this.keyToString = {
             average_quantity: "Average amount of t-shirt by order this month",
@@ -34,14 +34,7 @@ class AwesomeDashboard extends Component {
             total_amount: "Total amount of new orders this month",
         };
         onWillStart(async () => {
-            this.statistics = await this.rpc("/awesome_tshirt/statistics");
-        });
-        onWillStart(() => {
-            this.rpc('/awesome_tshirt/statistics')
-            .then(data => {
-                this.statistics = data;
-            })
-            .catch(error => console.log(error.message));
+            this.statistics = await this.tshirtService.loadStatistics();
         });
     }
 
@@ -79,7 +72,7 @@ Object.assign(AwesomeDashboard, {
         Counter,
         TodoList,
         Card,
-        Layout
+        Layout,
     }
 });
 

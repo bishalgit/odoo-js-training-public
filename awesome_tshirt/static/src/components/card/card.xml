@@ -2,13 +2,12 @@
 <templates xml:space="preserve">
 
     <t t-name="awesome_tshirt.Card" owl="1">
-        <div class="text-primary">
-            <div class="card" style="width: 18rem;">
-                <img src="/logo.png" class="card-img-top w-25" alt="Check test card" />
-                <div class="card-body">
-                    <h5 class="card-title" t-slot="title" />
-                    <t t-slot="default" />
-                </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <t t-if="props.slots.title"> 
+                    <h5 class="card-title"><t t-slot="title"/></h5>
+                </t>
+                <t t-slot="default"/>
             </div>
         </div>
     </t>

@@ -3,15 +3,11 @@
 const { Component, useState } = owl;
 
 export class Todo extends Component {
-    setup() {
-        // this.todo = useState({ id: this.props.id, description: "buy milk", done: false });
-        console.log("todo loaded");
+    toggleState() {
+        this.props.toggleState(this.props.id);
     }
-    toggleState(id) {
-        this.props.toggleState(id);
-    }
-    removeTodo(id) {
-        this.props.removeTodo(id);
+    removeTodo() {
+        this.props.removeTodo(this.props.id);
     }
 }
 

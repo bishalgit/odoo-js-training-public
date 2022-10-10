@@ -8,21 +8,11 @@
                 <button class="btn btn-primary" t-on-click="openLast7DaysOrders"> New Orders </button>
                 <button class="btn btn-primary" t-on-click="openLast7DaysCancelledOrders"> Cancelled Orders </button>
             </t>
-            <t t-call="awesome_tshirt.clientaction.statistics"/>
         </Layout>
-    </t>
 
-    <t t-name="awesome_tshirt.clientaction.statistics" owl="1">
-        <div class="d-flex flex-nowrap">
-            <div t-foreach="keyToString" t-as="key" t-key="key" class="m-2">
-                <Card>
-                    <t t-set-slot="title"><t t-esc="keyToString[key]"/></t>
-                    <p class="card-text"><t t-esc="statistics[key]"/></p>
-                </Card>   
-            </div>      
-        </div>
-    </t>
-        <!-- <div class="container">
+        <t t-call="awesome_tshirt.clientaction.statistics"/>
+
+        <div class="container">
             <div class="p-3">
                 hello world
                 <Card class="mt-3">
@@ -36,6 +26,18 @@
 
                 <TodoList />
             </div>
-        </div> -->
+        </div>
+    </t>
+
+    <t t-name="awesome_tshirt.clientaction.statistics" owl="1">
+        <div class="d-flex flex-nowrap">
+            <div t-foreach="keyToString" t-as="key" t-key="key" class="m-2">
+                <Card>
+                    <t t-set-slot="title"><t t-esc="keyToString[key]"/></t>
+                    <p class="card-text"><t t-esc="statistics[key]"/></p>
+                </Card>   
+            </div>      
+        </div>
+    </t>
 
 </templates>

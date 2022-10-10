@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-const { onMounted, onPatched, onWillUnmount, useRef } = owl.hooks;
+const { onMounted, onPatched, onWillUnmount, useRef } = owl;
 
 export function useEffect(effect, computeDependencies) {
     let cleanup = () => null;

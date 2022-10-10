@@ -1,25 +1,21 @@
 /** @odoo-module **/
 
 const { Component, useState } = owl;
-const { onMounted, useRef } = owl.hooks;
 
 import { useAutofocus } from "../../utils/hooks";
 import { Todo } from "../todo/todo";
 
 export class TodoList extends Component {
     setup() {
+        this.nextId = 1;
         this.todoList = useState([]);
-        this.counter = 1;
-        // this.todoInput = useRef('todoInput');
         useAutofocus('todoListInput');
-        this.toggleState = this.toggleState.bind(this);
-        this.removeTodo = this.removeTodo.bind(this);
     }
     addTodo(ev) {
         if (ev.keyCode == 13 && ev.target.value && ev.target.value.trim() != '') {
             // Add task to the list
             this.todoList.push({
-                id: this.counter++,
+                id: this.nextId++,
                 description: ev.target.value.trim(),
                 done: false,
             });
@@ -27,7 +23,7 @@ export class TodoList extends Component {
             ev.target.value = '';
         }
     }
-    toggleState(id) {
+    toggleTodo(id) {
         const todo = this.todoList.find((todo) => todo.id == id);
         if (todo) {
             todo.done = !todo.done;

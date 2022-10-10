@@ -3,7 +3,12 @@
 
 <t t-name="awesome_tshirt.Todo" owl="1">
     <div class="o-todo mt-4">
-        <input type="checkbox" class="p-2 mr-1" t-on-click="toggleState(props.id)" t-att-checked="props.done" aria-label="Todo or Done" /> <span t-attf-class="{{ props.done ? 'text-muted text-decoration-line-through': ''}}"><t t-esc="props.id" />. <t t-esc="props.description" /></span> <span class="fa fa-remove text-danger o-todo-pointer p-2" t-on-click="removeTodo(props.id)" />
+        <input type="checkbox" class="p-2 me-2 form-check-input" t-att-id="props.id" t-on-click="toggleState" t-att-checked="props.done" aria-label="Todo or Done" />
+        <label class="form-check-label" t-att-for="props.id" t-att-class="props.done ? 'text-decoration-line-through text-muted' : '' ">
+            <t t-esc="props.id"/>. 
+            <t t-esc="props.description"/>
+        </label>
+        <span class="fa fa-remove text-danger o-todo-pointer ms-3" t-on-click="removeTodo" />
     </div>
 </t>
 
