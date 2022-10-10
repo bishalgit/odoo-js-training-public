@@ -6,11 +6,7 @@ const { Component, useState } = owl;
 
 class AwesomeDashboard extends Component {
     setup() {
-        this.state = useState({value: 1});
-    }
-
-    increment() {
-        this.state.value = this.state.value + 1;
+        this.state = useState({test: 1});
     }
 }
 AwesomeDashboard.template = "awesome_tshirt.clientaction";

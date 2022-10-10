@@ -41,5 +41,8 @@
         'web.assets_backend': [
             'awesome_tshirt/static/src/**/*',
         ],
+        'web.assets_qweb': [
+            'awesome_tshirt/static/src/**/*.xml',
+        ]
     }
 }
