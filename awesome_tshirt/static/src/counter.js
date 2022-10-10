@@ -2,7 +2,7 @@
 
 const { Component, useState } = owl;
 
-class Counter extends Component {
+export class Counter extends Component {
     setup() {
         this.state = useState({value: 1});
     }
@@ -11,4 +11,6 @@ class Counter extends Component {
         this.state.value = this.state.value + 1;
     }
 }
-Counter.template = "awesome_tshirt.Counter";
+Object.assign(Counter, {
+    template: 'awesome_tshirt.Counter',
+});

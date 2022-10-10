@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
 <t t-name="awesome_tshirt.Counter" owl="1">
-    <div>
+    <div class="text-primary">
         <p>Counter: <t t-esc="state.value"/></p>
         <button class="btn btn-primary" t-on-click="increment">Increment</button>
     </div>
