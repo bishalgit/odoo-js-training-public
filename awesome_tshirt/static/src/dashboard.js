@@ -3,6 +3,7 @@
 import { registry } from "@web/core/registry";
 import { Counter } from "./components/counter/counter";
 import { TodoList } from "./components/todolist/todolist";
+import { Card } from "./components/card/card";
 
 const { Component, useState } = owl;
 
@@ -20,7 +21,8 @@ Object.assign(AwesomeDashboard, {
     template: 'awesome_tshirt.clientaction',
     components: {
         Counter,
-        TodoList
+        TodoList,
+        Card
     }
 });
 

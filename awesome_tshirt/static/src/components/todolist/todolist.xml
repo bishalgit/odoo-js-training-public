@@ -4,6 +4,7 @@
 <t t-name="awesome_tshirt.TodoList" owl="1">
 
     <div class="bg-white border border-primary rounded mt-3 p-3">
+        <h3 class="text-primary">Todos</h3>
         <input class="form-control mb-4" type="text" placeholder="Enter a new task" t-on-keyup="addTodo" t-ref="todoListInput" />
         <t t-foreach="todoList" t-as="todo" t-key="todo.id">
             <Todo id="todo.id" description="todo.description" done="todo.done" toggleState="toggleState" removeTodo="removeTodo" />

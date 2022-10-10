@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="awesome_tshirt.Card" owl="1">
+        <div class="text-primary">
+            <div class="card" style="width: 18rem;">
+                <img src="/logo.png" class="card-img-top w-25" alt="Check test card" />
+                <div class="card-body">
+                    <h5 class="card-title" t-slot="title" />
+                    <t t-slot="default" />
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
