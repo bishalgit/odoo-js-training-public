@@ -3,3 +3,13 @@
 }
 
 .big-checkbox {width: 16px; height: 16px;}
+
+.o-todo-pointer {
+    cursor: pointer;
+    transition: font-size 0.3s ease;;
+}
+.o-todo-pointer:hover {
+    cursor: pointer;
+    font-size: 16px;
+    transition: font-size 0.3s ease;;
+}

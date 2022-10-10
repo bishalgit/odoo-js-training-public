@@ -13,6 +13,7 @@ export class TodoList extends Component {
         // this.todoInput = useRef('todoInput');
         useAutofocus('todoListInput');
         this.toggleState = this.toggleState.bind(this);
+        this.removeTodo = this.removeTodo.bind(this);
     }
     addTodo(ev) {
         if (ev.keyCode == 13 && ev.target.value && ev.target.value.trim() != '') {
@@ -28,8 +29,15 @@ export class TodoList extends Component {
     }
     toggleState(id) {
         const todo = this.todoList.find((todo) => todo.id == id);
-        if (todo)
+        if (todo) {
             todo.done = !todo.done;
+        }
+    }
+    removeTodo(id) {
+        const todoIndex = this.todoList.findIndex(todo => todo.id == id);
+        if (todoIndex != -1) {
+            this.todoList.splice(todoIndex, 1);
+        }
     }
 }
 

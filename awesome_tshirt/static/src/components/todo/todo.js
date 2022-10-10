@@ -7,6 +7,12 @@ export class Todo extends Component {
         // this.todo = useState({ id: this.props.id, description: "buy milk", done: false });
         console.log("todo loaded");
     }
+    toggleState(id) {
+        this.props.toggleState(id);
+    }
+    removeTodo(id) {
+        this.props.removeTodo(id);
+    }
 }
 
 Object.assign(Todo, {
@@ -16,5 +22,6 @@ Object.assign(Todo, {
         description: { type: String },
         done: { type: Boolean },
         toggleState: { type: Function },
+        removeTodo: { type: Function },
     },
 });

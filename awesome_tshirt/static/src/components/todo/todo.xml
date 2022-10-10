@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
 
 <t t-name="awesome_tshirt.Todo" owl="1">
-    <div class="mt-4">
-        <input type="checkbox" class="p-2 mr-1" t-on-click="props.toggleState(props.id)" t-att-checked="props.done" aria-label="Todo or Done" /> <span t-attf-class="{{ props.done ? 'text-muted text-decoration-line-through': ''}}"><t t-esc="props.id" />. <t t-esc="props.description" /></span>
+    <div class="o-todo mt-4">
+        <input type="checkbox" class="p-2 mr-1" t-on-click="toggleState(props.id)" t-att-checked="props.done" aria-label="Todo or Done" /> <span t-attf-class="{{ props.done ? 'text-muted text-decoration-line-through': ''}}"><t t-esc="props.id" />. <t t-esc="props.description" /></span> <span class="fa fa-remove text-danger o-todo-pointer p-2" t-on-click="removeTodo(props.id)" />
     </div>
 </t>
 
