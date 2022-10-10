@@ -39,9 +39,11 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'awesome_tshirt/static/src/components/**/*',
             'awesome_tshirt/static/src/**/*',
         ],
         'web.assets_qweb': [
+            'awesome_tshirt/static/src/components/**/*.xml',
             'awesome_tshirt/static/src/**/*.xml',
         ]
     }
