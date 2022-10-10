@@ -41,5 +41,6 @@
         'web.assets_backend': [
             'awesome_tshirt/static/src/**/*',
         ],
-    }
+    },
+    "license": "LGPL-3",
 }
