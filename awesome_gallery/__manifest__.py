@@ -11,7 +11,7 @@
     'data': [],
     'assets': {
         'web.assets_backend': [
-            'awesome_gallery/static/src/**/*',
+            # 'awesome_gallery/static/src/**/*',
         ],
     },
     'license': 'AGPL-3'

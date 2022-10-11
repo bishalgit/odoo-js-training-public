@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates id="mailing_contact_views" xml:space="preserve">
+<templates xml:space="preserve">
     <t t-name="awesome_tshirt.CustomFormView" t-inherit="web.FormView" owl="1">
         <xpath expr="//button[hasclass('o_form_button_create')]" position="after">
             <t t-call="awesome_tshirt.OrderFormView.Button.PrintLabel"/>
