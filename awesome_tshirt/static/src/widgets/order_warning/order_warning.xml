@@ -9,7 +9,7 @@
             <ul class="m-0">
                 <t t-foreach="warnings" t-as="warning" t-key="warning">
                     <li>
-                        <t t-esc="warning" />
+                        <t t-out="warning" />
                     </li>
                 </t>
             </ul>
