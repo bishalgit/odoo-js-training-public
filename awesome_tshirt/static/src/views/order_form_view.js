@@ -11,6 +11,7 @@ export class CustomFormController extends FormController {
         super.setup();
         this.orm = useService('orm');
         this.actionService = useService("action");
+        this.notification = useService("notification");
         // const onPrint = debounce(this.onPrint.bind(this), 20);
         // this.onPrint = onPrint;
         // onDestroyed(() => {
@@ -19,8 +20,19 @@ export class CustomFormController extends FormController {
         this.debouncedPrintLabel = useDebounced(this.onPrint, 200);
     }
 
-    onPrint(ev) {
-        return this.orm.call(this.model.root.resModel, "print_label", [this.model.root.resId]);
+    async onPrint(ev) {
+        const result = this.orm.call(this.model.root.resModel, "print_label", [this.model.root.resId]);
+        
+        if (result) {
+            this.notification.add(this.env._t("Label successfully printed"), {
+                type: "success",
+            });
+        } else {
+            this.notification.add(this.env._t("Could not print the label"), {
+                type: "danger",
+                sticky: true,
+            });
+        }
     }
 
     get isPrintBtnPrimary() {
