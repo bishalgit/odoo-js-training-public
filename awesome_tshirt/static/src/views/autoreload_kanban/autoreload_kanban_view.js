@@ -3,6 +3,8 @@
 import { KanbanController } from "@web/views/kanban/kanban_controller";
 import { registry } from "@web/core/registry";
 import { kanbanView } from "@web/views/kanban/kanban_view";
+import { useDebounced } from "@web/core/utils/timing";
+
 import { useInterval } from "../../utils/timing";
 
 const { useState } = owl;
@@ -11,6 +13,7 @@ export class AutoReloadKanbanController extends KanbanController {
     setup() {
         super.setup();
         this.autoReload = useState({value: false});
+        this.debouncedToggleAutoReload = useDebounced(this.toggleAutoReload, 150);
         useInterval(() => {
             if (this.autoReload.value) {
                 this.model.load();

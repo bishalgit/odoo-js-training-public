@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="awesome_tshirt.KanbanView.Buttons" t-inherit="web.KanbanView.Buttons" owl="1">
         <xpath expr="//t[@t-if='canCreate']" position="after">
-            <button type="button" class="btn btn-secondary" accesskey="r" t-on-click="toggleAutoReload" data-bounce-button="">
+            <button type="button" class="btn btn-secondary" accesskey="r" t-on-click="debouncedToggleAutoReload" data-bounce-button="">
                 <t t-esc="autoReload.value ? 'Stop Autoreload': 'Start Autoreload'" />
             </button>
         </xpath>
