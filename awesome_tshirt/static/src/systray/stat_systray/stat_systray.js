@@ -4,16 +4,13 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Domain } from "@web/core/domain";
 
-const { Component, onWillStart } = owl;
+const { Component, useState } = owl;
 
 export class StatSystray extends Component {
     setup() {
-        this.statService = useService("tshirtService");
         this.action = useService("action");
-
-        onWillStart(async () => {
-            this.statistics = await this.statService.loadStatistics();
-        });
+        const statService = useService("tshirtService");
+        this.statistics = useState(statService.statistics);
     }
 
     openNewOrders() {

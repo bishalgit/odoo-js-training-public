@@ -12,7 +12,7 @@ import { Card } from "./components/card/card";
 import { PieChart } from "./components/pie_chart/pie_chart";
 import { sprintf } from "@web/core/utils/strings";
 
-const { Component, useSubEnv, onWillStart } = owl;
+const { Component, useSubEnv, useState } = owl;
 
 class AwesomeDashboard extends Component {
     setup() {
@@ -25,8 +25,10 @@ class AwesomeDashboard extends Component {
         this.display = {
             controlPanel: { "top-right": false, "bottom-right": false },
         };
+
         this.action = useService("action");
-        this.tshirtService = useService("tshirtService");
+        const statService = useService("tshirtService");
+        this.statistics = useState(statService.statistics);
 
         this.keyToString = {
             average_quantity: this.env._t("Average amount of t-shirt by order this month"),
@@ -37,9 +39,6 @@ class AwesomeDashboard extends Component {
             nb_new_orders: this.env._t("Number of new orders this month"),
             total_amount: this.env._t("Total amount of new orders this month"),
         };
-        onWillStart(async () => {
-            this.statistics = await this.tshirtService.loadStatistics();
-        });
     }
 
     openCustomerView() {
