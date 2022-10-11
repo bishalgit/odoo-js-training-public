@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t t-name="awesome_tshirt.Card" owl="1">
-        <div class="card" style="width: 18rem;">
+        <div class="card" t-att-class="props.className" style="width: 18rem;">
             <div class="card-body">
                 <t t-if="props.slots.title"> 
                     <h5 class="card-title"><t t-slot="title"/></h5>

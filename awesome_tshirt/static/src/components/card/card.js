@@ -13,5 +13,9 @@ Object.assign(Card, {
                 title: { type: Object, optional: true },
             },
         },
+        className: {
+            type: String,
+            optional: true,
+        },
     },
 });

@@ -9,6 +9,7 @@ import { Domain } from "@web/core/domain";
 import { Counter } from "./components/counter/counter";
 import { TodoList } from "./components/todolist/todolist";
 import { Card } from "./components/card/card";
+import { PieChart } from "./components/pie_chart/pie_chart";
 
 const { Component, useSubEnv, onWillStart } = owl;
 
@@ -73,6 +74,7 @@ Object.assign(AwesomeDashboard, {
         TodoList,
         Card,
         Layout,
+        PieChart,
     }
 });
 
