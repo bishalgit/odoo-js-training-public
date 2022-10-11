@@ -10,7 +10,7 @@
             </t>
         </Layout>
 
-        <div class="h-100 o_awesome_tshirt_dashboard">
+        <div class="o_awesome_tshirt_dashboard">
             <t t-call="awesome_tshirt.clientaction.statistics"/>
     
             <div class="m-3">
@@ -24,12 +24,12 @@
         <div class="container">
             <div class="p-3">
                 hello world
-                <Card class="mt-3">
+                <Card className="'mt-3'">
                     <t t-set-slot="title">Counter</t>
                     <p class="card-text">Increase the counter</p>
                     <Counter />
                 </Card>
-                <Card class="mt-3">
+                <Card className="'mt-3'">
                     <p class="card-text">Another card</p>
                 </Card>
 
