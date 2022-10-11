@@ -10,6 +10,7 @@ import { Counter } from "./components/counter/counter";
 import { TodoList } from "./components/todolist/todolist";
 import { Card } from "./components/card/card";
 import { PieChart } from "./components/pie_chart/pie_chart";
+import { sprintf } from "@web/core/utils/strings";
 
 const { Component, useSubEnv, onWillStart } = owl;
 
@@ -28,11 +29,13 @@ class AwesomeDashboard extends Component {
         this.tshirtService = useService("tshirtService");
 
         this.keyToString = {
-            average_quantity: "Average amount of t-shirt by order this month",
-            average_time: "Average time for an order to go from 'new' to 'sent' or 'cancelled'",
-            nb_cancelled_orders: "Number of cancelled orders this month",
-            nb_new_orders: "Number of new orders this month",
-            total_amount: "Total amount of new orders this month",
+            average_quantity: this.env._t("Average amount of t-shirt by order this month"),
+            average_time: this.env._t(
+                "Average time for an order to go from 'new' to 'sent' or 'cancelled'"
+            ),
+            nb_cancelled_orders: this.env._t("Number of cancelled orders this month"),
+            nb_new_orders: this.env._t("Number of new orders this month"),
+            total_amount: this.env._t("Total amount of new orders this month"),
         };
         onWillStart(async () => {
             this.statistics = await this.tshirtService.loadStatistics();
@@ -64,7 +67,13 @@ class AwesomeDashboard extends Component {
     openLast7DaysCancelledOrders() {
         const domain =
             "[('create_date','>=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d')), ('state','=', 'cancelled')]";
-        this.openOrders("Last 7 days cancelled orders", domain);
+        this.openOrders(this.env._t("Last 7 days cancelled orders"), domain);
+    }
+
+    openFilteredBySizeOrders(size) {
+        const title = sprintf(this.env._t("Filtered orders by %s size"), size);
+        const domain = `[('size','=', '${size}')]`;
+        this.openOrders(title, domain);
     }
 }
 Object.assign(AwesomeDashboard, {
