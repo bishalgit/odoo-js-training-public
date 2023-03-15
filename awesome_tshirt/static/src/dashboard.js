@@ -10,9 +10,9 @@ import { Counter } from "./components/counter/counter";
 import { TodoList } from "./components/todolist/todolist";
 import { Card } from "./components/card/card";
 import { PieChart } from "./components/pie_chart/pie_chart";
+import { CustomerAutocomplete } from "./components/customer_autocomplete/customer_autocomplete";
 import { sprintf } from "@web/core/utils/strings";
-
-const { Component, useSubEnv, useState } = owl;
+import { Component, useSubEnv, useState } from "@odoo/owl";
 
 class AwesomeDashboard extends Component {
     setup() {
@@ -83,6 +83,7 @@ Object.assign(AwesomeDashboard, {
         Card,
         Layout,
         PieChart,
+        CustomerAutocomplete,
     }
 });
 

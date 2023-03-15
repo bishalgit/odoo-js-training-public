@@ -4,12 +4,12 @@ import { registry } from "@web/core/registry";
 import { memoize } from "@web/core/utils/functions";
 import { session } from "@web/session";
 import { useInterval } from "../utils/timing";
+import { reactive } from "@odoo/owl";
 
-const { reactive } = owl;
 
 export const tshirtService = {
-    dependencies: ["rpc"],
-    async start(env, { rpc }) {
+    dependencies: ["rpc", "orm"],
+    async start(env, { rpc, orm }) {
         const statistics = reactive({});
 
         if (session.tshirt_statistics) {
@@ -22,7 +22,14 @@ export const tshirtService = {
             Object.assign(statistics, await rpc("/awesome_tshirt/statistics"));
         }, 60_000);
         
-        return { statistics, };
+        async function loadCustomers() {
+            return await orm.searchRead("res.partner", [], ["display_name"]);
+        }
+
+        return {
+            statistics,
+            loadCustomers: memoize(loadCustomers),
+        };
     },
 };
 
